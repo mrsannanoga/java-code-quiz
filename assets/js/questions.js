@@ -15,7 +15,8 @@ var quizQuestions = [
         answers: [
             "// This is a comment",
             "/* This is a comment",
-            "# This is a comment"
+            "# This is a comment",
+            ". This is a comment"
         ],
         correctAnswerIndex: 0
     },
