@@ -1,3 +1,4 @@
+//Quiz questions, answers and correct answer indexes
 var quizQuestions = [
     {
         question: "What is a correct syntax to output 'Hello World' in Java?",
@@ -48,4 +49,4 @@ var quizQuestions = [
         ],
         correctAnswerIndex: 2
     },
-]
+];
