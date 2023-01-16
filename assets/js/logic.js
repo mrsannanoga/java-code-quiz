@@ -1,5 +1,3 @@
-
-
 //Global variables
 var startQuiz = document.querySelector("#start");
 var highscoresSection = document.querySelector(".scores");
@@ -10,10 +8,6 @@ var timeStart = false;
 var questionsBox = document.querySelector("#questions");
 var questionTitle = document.querySelector("#question-title");
 var answers = document.querySelector("#choices");
-// var answerA = document.querySelector("#answerA");
-// var answerB = document.querySelector("#answerB");
-// var answerC = document.querySelector("#answerC");
-// var answerD = document.querySelector("#answerD");
 var startScreen = document.querySelector("#start-screen");
 var finalScreen = document.querySelector("#end-screen");
 var answerFeedback = document.querySelector("#feedback")
@@ -21,6 +15,7 @@ var finalScore = document.querySelector("#final-score");
 var initials = document.querySelector("#initials");
 var submitButton = document.querySelector("#submit");
 var highscores = document.querySelector("#highscores");
+
 var score = 0;
 //var quizQuestionsNumber = 0;
 //var questionCount = 1;
@@ -250,21 +245,19 @@ function endQuiz() {
     finalScreen.style.display = "block";
     questionsBox.style.display = "none";
     timerSection.style.display = "none";
-    finalScore.innerHTML = score;
+    finalScore.textContent = score;
+
+    submitButton.addEventListener("click", function () {
+        var userInitials = initials.value;
+        let userScore = finalScore.textContent;
+
+        // Save to local storage
+        var viewHighscores = JSON.parse(localStorage.getItem("View HighScores")) || [];
+        viewHighscores.push({ userInitials, userScore });
+        localStorage.setItem("View HighScores", JSON.stringify(viewHighscores));
+
+        window.location.href = "highscores.html";
+        
+    });
+
 };
-
-// //Submit your score and initials
-// submitButton.addEventListener("click", submitResult);
-
-// function submitResult() {
-//     finalScreen.style.display = "none";
-//     window.location.href = "highscores.html";
-//     highscores = "";
-//     highscores.push(initials.value + "" + score.textContent);
-   
-//     localStorage.setItem("highscores");
-    
-   
-// };
-
-
