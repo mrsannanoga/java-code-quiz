@@ -1,4 +1,4 @@
-//Quiz questions, answers and correct answer indexes
+//Quiz questions, answers options and correct answer indexes
 var quizQuestions = [
     {
         question: "What is a correct syntax to output 'Hello World' in Java?",

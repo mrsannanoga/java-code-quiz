@@ -15,19 +15,15 @@ var finalScore = document.querySelector("#final-score");
 var initials = document.querySelector("#initials");
 var submitButton = document.querySelector("#submit");
 var highscores = document.querySelector("#highscores");
-
 var score = 0;
-//var quizQuestionsNumber = 0;
-//var questionCount = 1;
 var i = 0;
 
 
-//Creating a list element under "choices"
+//Creating a list element inside #choices which reference to answer options of quiz question
 var unorderedList = document.createElement("ul")
 answers.appendChild(unorderedList);
-//unorderedList.setAttribute("style", "list-style:none")
 
-
+// ButtonA for answer option one
 var li1 = document.createElement("li")
 unorderedList.appendChild(li1);
 var buttonA = document.createElement("button");
@@ -35,19 +31,21 @@ li1.appendChild(buttonA);
 buttonA.setAttribute("id", "answerA");
 
 
-
+// ButtonB for answer option two
 var li2 = document.createElement("li")
 unorderedList.appendChild(li2);
 var buttonB = document.createElement("button");
 li2.appendChild(buttonB);
 buttonB.setAttribute("id", "answerB");
 
+// ButtonC for answer option three
 var li3 = document.createElement("li")
 unorderedList.appendChild(li3);
 var buttonC = document.createElement("button");
 li3.appendChild(buttonC);
 buttonC.setAttribute("id", "answerC");
 
+// ButtonD for answer option four
 var li4 = document.createElement("li")
 unorderedList.appendChild(li4);
 var buttonD = document.createElement("button");
@@ -103,22 +101,24 @@ function setQuizQuestions() {
 buttonA.addEventListener('click', function (event) {
     event.stopPropagation();
     correctAnswer = quizQuestions[i].correctAnswerIndex;
-    //console.log("correctAnswer " + correctAnswer);
 
     if (0 === correctAnswer) {
         answerFeedback.setAttribute("style", "display: block");
+        //feedback information flashes
         answerFeedback.innerHTML = "Correct! Well done!";
         setTimeout(function () {
             answerFeedback.innerHTML = "";
         },
             1000
         );
-
+        //when answer is correct 1 point is added to the score
         score++;
 
     } else {
+        //if wrong answer, 10seconds are taken from the timer 
         timeLeft -= 10;
         answerFeedback.setAttribute("style", "display: block");
+        //feedback information flashes
         answerFeedback.innerHTML = "Sorry, that's incorrect!";
         setTimeout(function () {
             answerFeedback.innerHTML = "";
@@ -134,11 +134,11 @@ buttonA.addEventListener('click', function (event) {
     };
 });
 
+//the same sequence of code refers to the rest answers buttons
 //ButtonB
 buttonB.addEventListener('click', function (event) {
     event.stopPropagation();
     correctAnswer = quizQuestions[i].correctAnswerIndex;
-    //console.log("correctAnswer " + correctAnswer);
 
     if (1 === correctAnswer) {
         answerFeedback.setAttribute("style", "display: block");
@@ -173,7 +173,6 @@ buttonB.addEventListener('click', function (event) {
 buttonC.addEventListener('click', function (event) {
     event.stopPropagation();
     correctAnswer = quizQuestions[i].correctAnswerIndex;
-    //console.log("correctAnswer " + correctAnswer);
 
     if (2 === correctAnswer) {
         answerFeedback.setAttribute("style", "display: block");
@@ -203,11 +202,11 @@ buttonC.addEventListener('click', function (event) {
         setQuizQuestions();
     };
 });
+
 //ButtonD
 buttonD.addEventListener('click', function (event) {
     event.stopPropagation();
     correctAnswer = quizQuestions[i].correctAnswerIndex;
-    //console.log("correctAnswer " + correctAnswer);
 
     if (3 === correctAnswer) {
         answerFeedback.setAttribute("style", "display: block");
@@ -246,12 +245,12 @@ function endQuiz() {
     questionsBox.style.display = "none";
     timerSection.style.display = "none";
     finalScore.textContent = score;
-
+    //event listener on submit button
     submitButton.addEventListener("click", function () {
         var userInitials = initials.value;
         let userScore = finalScore.textContent;
 
-        // Save to local storage
+        // Save initials and score to local storage
         var viewHighscores = JSON.parse(localStorage.getItem("View HighScores")) || [];
         viewHighscores.push({ userInitials, userScore });
         localStorage.setItem("View HighScores", JSON.stringify(viewHighscores));
